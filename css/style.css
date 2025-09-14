@@ -1,0 +1,102 @@
+/* =======================
+   Global variables
+======================= */
+:root {
+    /* Colors */
+    --color-primary: blue;
+    --color-primary-rgb: 13, 110, 253;
+    --color-light-hover: white;
+
+    /* Effects */
+    --focus-ring-size: 0.25rem;
+    --focus-ring-color: rgba(var(--color-primary-rgb), .25);
+
+    /* Animation */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.4s ease;
+}
+
+/* =======================
+   Form controls
+======================= */
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 var(--focus-ring-size) var(--focus-ring-color);
+    transition: box-shadow var(--transition-normal);
+}
+
+/* =======================
+   Button interactions
+======================= */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-fast);
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+/* Ripple effect */
+.btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(var(--color-primary-rgb), 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width var(--transition-slow),
+                height var(--transition-slow),
+                opacity 0.6s ease;
+}
+
+.btn:active::after {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+    transition: none;
+}
+
+/* =======================
+   Badge pulsing
+======================= */
+.badge {
+    transition: transform var(--transition-normal);
+}
+
+.badge.pulse {
+    animation: pulseAnim 0.5s;
+}
+
+@keyframes pulseAnim {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* =======================
+   Table row hover
+======================= */
+.table tbody tr:hover {
+    background-color: var(--color-light-hover);
+    transition: background-color var(--transition-normal);
+}
+
+/* =======================
+   Card hover effect
+======================= */
+.card {
+    transition: box-shadow var(--transition-normal),
+                transform var(--transition-fast);
+}
+
+.card:hover {
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
